@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<div class="row questionList">
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:5000/api/Questions',
+            data: param = "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var dataTab = JSON.stringify(data);
+                var json_obj = $.parseJSON(JSON.stringify(data));//parse JSON
+                for (i = 0; i <= json_obj.length; i++) {
+                    $('.questionList').append(' <div class="col-md-4"><div class="card" style="width: 18rem;">' +
+                        '<img class= "card-img-top" src = "https://t4.ftcdn.net/jpg/03/66/65/79/360_F_366657913_DjmQUPeBpBP0hpSEzgVoCSKKZr6JBDbE.jpg" alt = "Card image cap" >' +
+                        '<div class="card-body">' +
+                        '<h5 class="card-title">' + json_obj[i].id + '</h5>' +
+                        '<p class="card-text">' + json_obj[i].question + '</p>' +
+                        '<a href="#" class="btn btn-primary">Go somewhere</a>' +
+                        '</div>' +
+                        '</div></div>');
+                }
+
+            },
+            error: function () {
+                alert("Error occured!!")
+            }
+        });
+
+
+    });
+</script>

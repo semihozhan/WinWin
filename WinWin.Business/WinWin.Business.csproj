@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WinWin.DataAccess\WinWin.DataAccess.csproj" />
+    <ProjectReference Include="..\WinWin.Entities\WinWin.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
