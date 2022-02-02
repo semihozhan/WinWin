@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace WinWin.Business.Extensions
 {
     public static class ServiceCollectionExtensions 
     {
-        public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection)
+        public static IServiceCollection LoadMyService(this IServiceCollection serviceCollection,string asd)
         {
-            serviceCollection.AddDbContext<WinWinDbContext>();
+            serviceCollection.AddDbContext<WinWinDbContext>(options => options.UseSqlServer(asd));
             serviceCollection.AddIdentity<User,Role>(options => {
                 //password option
                 options.Password.RequireDigit = false;

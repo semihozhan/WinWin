@@ -8,11 +8,19 @@ namespace WinWin.DataAccess
 {
     public class WinWinDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public WinWinDbContext()
+        {
+        }
+
+        public WinWinDbContext(DbContextOptions<WinWinDbContext> dbContextOptions) : base(dbContextOptions)
+        {
+
+        }
+       /* protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer("Server=localhost; Database=WinWin; uid=sa ; pwd=S3mih.12");
-        }
+        }*/
 
         public DbSet<Questions> Questions { get; set; }
     }

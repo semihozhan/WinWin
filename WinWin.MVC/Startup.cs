@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using WinWin.Business.Extensions;
-
+using WinWin.DataAccess;
 
 namespace WinWin.MVC
 {
@@ -31,9 +32,9 @@ namespace WinWin.MVC
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });*/
             services.AddControllersWithViews();
-
             services.AddSession();
-            services.LoadMyService();
+           
+            services.LoadMyService(asd:Configuration.GetConnectionString("LocalDB"));
 
             services.ConfigureApplicationCookie(options => {
                 options.LoginPath = new PathString("/Admin/User/Login");
